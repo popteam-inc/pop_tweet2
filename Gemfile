@@ -13,6 +13,7 @@ gem 'omniauth-twitter'
 gem 'whenever', require: false
 gem 'dotenv-rails'
 gem 'rails-erd'
+gem 'rack-cors'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

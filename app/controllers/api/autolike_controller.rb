@@ -38,6 +38,6 @@ class Api::AutolikeController < ApplicationController
   private
 
   def create_params
-    params.require(:autolike).permit!
+    params.require(:autolike).permit(:keyword)
   end
 end

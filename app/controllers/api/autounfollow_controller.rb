@@ -27,6 +27,6 @@ class Api::AutounfollowController < ApplicationController
   private
 
   def create_params
-    params.require(:autounfollow).permit!
+    params.require(:autounfollow).permit(:keyword)
   end
 end

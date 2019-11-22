@@ -45,8 +45,6 @@ ActiveRecord::Schema.define(version: 2019_11_21_072711) do
   end
 
   create_table "autoposts", force: :cascade do |t|
-    t.text "username"
-    t.text "password"
     t.text "autopost_caption"
     t.text "image1"
     t.text "image2"

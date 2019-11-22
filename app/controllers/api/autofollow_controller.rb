@@ -38,6 +38,6 @@ class Api::AutofollowController < ApplicationController
   private
 
   def create_params
-    params.require(:autofollow).permit!
+    params.require(:autofollow).permit(:keyword)
   end
 end

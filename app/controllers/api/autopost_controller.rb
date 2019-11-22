@@ -40,8 +40,7 @@ class Api::AutopostController < ApplicationController
   private
 
   def create_params
-    # params.require(:autopost).permit(:autopost_caption, :filename, :autopost_date)
-    params.require(:autopost).permit!
+    params.require(:autopost).permit(:autopost_caption, :image1, :image2, :image3, :image4, :autopost_date)
   end
 end
   
