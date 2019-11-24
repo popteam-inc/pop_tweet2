@@ -1,12 +1,9 @@
 class Api::AutounfollowController < ApplicationController
-  
-  def test_initialize
-    @user = User.first
-    @account = @user.accounts.first
-  end
+  include TwitterClients
+  before_action :get_userdata_initialize, :twitter_client
 
   def create
-    test_initialize
+
     # @account = @user.accounts.find_by(id: params[:id])
     if @account.autounfollow.nil?
       @autounfollow = @account.build_autounfollow(create_params)
@@ -27,6 +24,6 @@ class Api::AutounfollowController < ApplicationController
   private
 
   def create_params
-    params.require(:autounfollow).permit(:keyword)
+    params.require(:autounfollow).permit!
   end
 end

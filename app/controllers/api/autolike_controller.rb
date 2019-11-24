@@ -1,22 +1,8 @@
 class Api::AutolikeController < ApplicationController
-  # before_action :twitter_client
-  
-  def test_initialize
-    @user = User.first
-    @account = @user.accounts.first
-  end
-
-  # def twitter_client
-  #   @client = Twitter::REST::Client.new do |config|
-  #     config.consumer_key        = ENV['API_KEY']
-  #     config.consumer_secret     = ENV['API_SECRET_KEY']
-  #     config.access_token        = @account.token
-  #     config.access_token_secret = @account.secret
-  #   end
-  # end
+  include TwitterActions
+  before_action :get_userdata_initialize, :twitter_client
 
   def create
-    test_initialize
     # @account = @user.accounts.find_by(id: params[:id])
     if @account.autolike.nil?
       # @account.autolike.build(autolike_params)
@@ -38,6 +24,6 @@ class Api::AutolikeController < ApplicationController
   private
 
   def create_params
-    params.require(:autolike).permit(:keyword)
+    params.require(:autolike).permit!
   end
 end
