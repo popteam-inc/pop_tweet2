@@ -1,22 +1,8 @@
 class Api::AutopostController < ApplicationController
-  # before_action :twitter_client
-
-  def test_initialize
-    @user = User.first
-    @account = @user.accounts.first
-  end
-
-  # def twitter_client
-  #   @client = Twitter::REST::Client.new do |config|
-  #     config.consumer_key        = ENV['API_KEY']
-  #     config.consumer_secret     = ENV['API_SECRET_KEY']
-  #     config.access_token        = @account.token
-  #     config.access_token_secret = @account.secret
-  #   end
-  # end
+  include TwitterActions
+  before_action :get_userdata_initialize, :twitter_client
 
   def create
-    test_initialize
     # @autopost = @account.build_autopost(create_params)
     @autopost = @account.autoposts.build(create_params)
     @autopost.save
@@ -40,7 +26,8 @@ class Api::AutopostController < ApplicationController
   private
 
   def create_params
-    params.require(:autopost).permit(:autopost_caption, :image1, :image2, :image3, :image4, :autopost_date)
+    # params.require(:autopost).permit(:autopost_caption, :filename, :autopost_date)
+    params.require(:autopost).permit!
   end
 end
   
